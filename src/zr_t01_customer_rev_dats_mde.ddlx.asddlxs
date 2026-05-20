@@ -1,0 +1,36 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+  typeName: 'Customer Revenue',
+  typeNamePlural: 'Customer Revenues'
+}
+@UI.chart: [{
+  qualifier: 'RevenueChart',
+  chartType: #COLUMN,
+  dimensions: ['CustomerName'],
+  measures: ['Revenue']
+}]
+annotate view ZR_T01_CUSTOMER_REV_DATS with
+{
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  customer_id;
+
+  @UI.lineItem: [{ position: 20,
+  label: 'Customer Name' }]
+  @UI.identification: [{ position: 20 }]
+  CustomerName;
+
+//  @UI.lineItem: [{ position: 30 }]
+//  @UI.identification: [{ position: 30 }]
+//  CurrencyCode;
+
+  @EndUserText.label: 'Number of Orders'
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  NumberOfOrders;
+
+  @EndUserText.label: 'Revenue'
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  Revenue;
+}

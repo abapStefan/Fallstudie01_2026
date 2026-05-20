@@ -1,0 +1,206 @@
+//@Metadata.layer: #CORE
+//
+//@UI: {
+//  headerInfo: {
+//    typeName: 'Order',
+//    typeNamePlural: 'Orders',
+//    title: {
+//      type: #STANDARD,
+//      value: 'OrderId'
+//    }
+//  }
+//}
+//
+//annotate entity ZC_T01_ORDER with
+//{
+//
+//  @UI.facet: [
+//    {
+//      id: 'Order',
+//      type: #IDENTIFICATION_REFERENCE,
+//      label: 'Order',
+//      position: 10
+//    },
+//    {
+//      id: 'OrderedItems',
+//      type: #LINEITEM_REFERENCE,
+//      label: 'Ordered Items',
+//      position: 20,
+//      targetElement: '_OrderItem'
+//    },
+//
+//    {
+//     id: 'Customer',
+//     type:#IDENTIFICATION_REFERENCE,
+//     label: 'Customer',
+//     targetElement: '_Customer',
+//     position: 8
+//    }
+//  ]
+//
+//  @EndUserText.label: 'Order ID'
+//  @UI.lineItem: [{ position: 10 }]
+//  @UI.identification: [{ position: 10 }]
+//  OrderId;
+//
+//  @EndUserText.label: 'Order Date'
+//  @UI.lineItem: [{ position: 20 }]
+//  @UI.identification: [{ position: 20 }]
+//  @UI.selectionField: [{ position: 20 }]
+//  OrderDate;
+//
+//  //  @EndUserText.label: 'Total Amount'
+//  //  @UI.lineItem: [{ position: 30 }]
+//  //  @UI.identification: [{ position: 30 }]
+//  //  TotalAmount;
+//
+//  @UI.lineItem: [{ position: 70 }]
+//  @UI.identification: [{ position: 70 }]
+//  @EndUserText.label: 'Order Total Revenue'
+//  TotalRevenue;
+//
+////    @UI.lineItem: [{ position: 40 }]
+////    @UI.identification: [{ position: 40 }]
+////    CurrencyCode;
+//
+//  @EndUserText.label: 'Order Status'
+//  @UI.lineItem: [{ position: 50 }]
+//  @UI.identification: [{ position: 50 }]
+//  @UI.selectionField: [{ position: 50 }]
+//  Status;
+//
+//}
+
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Order',
+    typeNamePlural: 'Orders',
+    title: {
+      type: #STANDARD,
+      value: 'OrderId'
+    }
+  }
+}
+
+annotate entity ZC_T01_ORDER with
+{
+  @UI.facet: [
+    {
+      id: 'Customer',
+      type: #COLLECTION,
+      label: 'Customer',
+      position: 10
+    },
+    {
+      id: 'CustomerGeneral',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'General',
+      parentId: 'Customer',
+      targetQualifier: 'CustomerGeneral',
+      position: 10
+    },
+    {
+      id: 'CustomerContact',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Contact',
+      parentId: 'Customer',
+      targetQualifier: 'CustomerContact',
+      position: 20
+    },
+    {
+      id: 'CustomerAddress',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Address',
+      parentId: 'Customer',
+      targetQualifier: 'CustomerAddress',
+      position: 30
+    },
+
+    {
+      id: 'Order',
+      type: #COLLECTION,
+      label: 'Order',
+      position: 20
+    },
+    {
+      id: 'OrderGeneral',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'General',
+      parentId: 'Order',
+      targetQualifier: 'OrderGeneral',
+      position: 10
+    },
+
+    {
+      id: 'OrderedItems',
+      type: #LINEITEM_REFERENCE,
+      label: 'Ordered Items',
+      position: 30,
+      targetElement: '_OrderItem'
+    }
+  ]
+
+  @EndUserText.label: 'Order ID'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  @UI.fieldGroup: [{ qualifier: 'OrderGeneral', position: 10 }]
+  OrderId;
+
+  @EndUserText.label: 'Order Date'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  @UI.fieldGroup: [{ qualifier: 'OrderGeneral', position: 20 }]
+  OrderDate;
+
+  @EndUserText.label: 'Order Status'
+  @UI.lineItem: [{ position: 50 }]
+  @UI.selectionField: [{ position: 50 }]
+  @UI.identification: [{ position: 30 }]
+  @UI.fieldGroup: [{ qualifier: 'OrderGeneral', position: 30 }]
+  Status;
+
+  @EndUserText.label: 'Order Total Revenue'
+  @UI.lineItem: [{ position: 70 }]
+  @UI.identification: [{ position: 40 }]
+  @UI.fieldGroup: [{ qualifier: 'OrderGeneral', position: 40 }]
+  TotalRevenue;
+
+  @EndUserText.label: 'Customer ID'
+  @UI.fieldGroup: [{ qualifier: 'CustomerGeneral', position: 10 }]
+  CustomerId;
+
+  @EndUserText.label: 'First Name'
+  @UI.fieldGroup: [{ qualifier: 'CustomerGeneral', position: 20 }]
+  CustomerFirstName;
+
+  @EndUserText.label: 'Last Name'
+  @UI.fieldGroup: [{ qualifier: 'CustomerGeneral', position: 30 }]
+  CustomerLastName;
+
+  @EndUserText.label: 'E-Mail'
+  @UI.fieldGroup: [{ qualifier: 'CustomerContact', position: 10 }]
+  CustomerEmail;
+
+  @EndUserText.label: 'Phone Number'
+  @UI.fieldGroup: [{ qualifier: 'CustomerContact', position: 20 }]
+  CustomerTelNumber;
+
+  @EndUserText.label: 'Street'
+  @UI.fieldGroup: [{ qualifier: 'CustomerAddress', position: 10 }]
+  CustomerAddress;
+
+  @EndUserText.label: 'City'
+  @UI.fieldGroup: [{ qualifier: 'CustomerAddress', position: 20 }]
+  CustomerCity;
+
+  @EndUserText.label: 'ZIP-Code'
+  @UI.fieldGroup: [{ qualifier: 'CustomerAddress', position: 30 }]
+  CustomerZipCode;
+
+  @EndUserText.label: 'Country'
+  @UI.fieldGroup: [{ qualifier: 'CustomerAddress', position: 40 }]
+  CustomerCountry;
+}

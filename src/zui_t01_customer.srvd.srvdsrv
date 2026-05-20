@@ -1,0 +1,10 @@
+@EndUserText.label: 'Customer Service Definition'
+define service ZUI_T01_CUSTOMER {
+  expose ZC_T01_CUSTOMER          as Customer;
+  expose ZC_T01_ORDER             as Orders;
+  expose ZC_T01_ORDER_ITEM        as OrderItem;
+  expose ZC_T01_PRODUCT           as Product;
+  expose ZR_T01_CUSTOMER_REVENUE  as Revenue;
+  expose ZR_T01_CUSTOMER_REV_DATS as RevenueDats;
+  expose ZC_T01_PRODUCT_TOP       as ProductRevenue;
+}

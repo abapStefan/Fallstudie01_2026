@@ -1,0 +1,53 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Product',
+    typeNamePlural: 'Products',
+    title: {
+      type: #STANDARD,
+      value: 'ProductName'
+      
+    },
+     description: {
+      value: 'ProductId'
+    }
+  }
+}
+
+annotate entity ZC_T01_PRODUCT with
+{
+
+  @UI.facet: [
+    {
+      id: 'Product',
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Product',
+      position: 10
+    }, 
+    { 
+      id: 'OrderItem',
+      type: #LINEITEM_REFERENCE,
+      label: 'Order Item',
+      position: 11,
+      targetElement: '_OrderItem'
+    }
+  ]
+
+  @EndUserText.label: 'Product ID'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  ProductId;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  ProductName;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  Price;
+
+//  @UI.lineItem: [{ position: 40 }]
+//  @UI.identification: [{ position: 40 }]
+//  CurrencyCode;
+}

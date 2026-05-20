@@ -1,0 +1,19 @@
+@Metadata.layer: #CORE
+annotate view ZR_T01_CUSTOMER_REVENUE with
+{
+  @UI.lineItem: [
+    { position: 10, label: 'Currency' }
+  ]
+  CurrencyCode;
+
+  @UI.lineItem: [
+    { position: 20, label: 'Total Revenue' }
+  ]
+  TotalRevenue;
+  
+  @EndUserText.label: 'Bestellperiode'
+//  @UI.lineItem: [{ position: 30, label: 'Order Date Filter' }]
+    @UI.selectionField: [{ position: 30 }]
+  @Consumption.filter: { selectionType: #INTERVAL, multipleSelections: false }
+  OrderDate;
+}

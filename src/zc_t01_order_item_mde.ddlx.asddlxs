@@ -1,0 +1,80 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Ordered Item',
+    typeNamePlural: 'Ordered Items',
+    title: {
+      type: #STANDARD,
+      value: 'OrderItemId'
+    }
+  }
+}
+
+annotate entity ZC_T01_ORDER_ITEM with
+{
+
+  @UI.facet: [
+    {
+      id: 'OrderedItem',
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Ordered Item',
+      position: 11
+    },
+    { 
+     id:'Product',
+     type: #IDENTIFICATION_REFERENCE,
+     label: 'Product',
+     targetElement: '_Product',
+     position: 12
+    },
+    { 
+        id: 'Customer',
+        type: #IDENTIFICATION_REFERENCE,
+        label: 'Customer',
+        targetElement: '_Customer',
+        position: 9
+    },
+    { 
+        id:'Order',
+        type: #IDENTIFICATION_REFERENCE,
+        label: 'Order',
+        targetElement: '_Order',
+        position: 10
+    }
+  ]
+
+  @EndUserText.label: 'Item ID'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  OrderItemId;
+
+  @EndUserText.label: 'Product ID'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  ProductId;
+
+    @EndUserText.label: 'Product Name'
+    @UI.lineItem: [{ position: 30 }]
+    @UI.identification: [{ position: 30 }]
+    ProductName;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  Quantity;
+
+  @EndUserText.label: 'Unit Price'
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  UnitPriceAtOrder;
+  
+  
+  @EndUserText.label: 'Unit Total Price'
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
+  ItemTotalPrice;
+
+//  @UI.lineItem: [{ position: 60 }]
+//  @UI.identification: [{ position: 60 }]
+//  CurrencyCode;
+}

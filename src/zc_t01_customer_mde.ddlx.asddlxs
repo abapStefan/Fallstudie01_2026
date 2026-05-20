@@ -1,0 +1,239 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Customer',
+    typeNamePlural: 'Customers',
+    title: {
+      type: #STANDARD,
+      value: 'LastName'
+    },
+    description: {
+      value: 'FirstName'
+    }
+  }
+}
+
+annotate entity ZC_T01_CUSTOMER with
+{
+
+  //  @UI.facet: [
+  //    {
+  //      id: 'Customer',
+  //      type: #IDENTIFICATION_REFERENCE,
+  //      label: 'Customer',
+  //      position: 10
+  //    },
+  //      {
+  //    id: 'Contact',
+  //    type: #FIELDGROUP_REFERENCE,
+  //    label: 'Contact',
+  //    parentId: 'Customer',
+  //    targetQualifier: 'Contact',
+  //    position: 20
+  //  },
+  //  {
+  //    id: 'Notes',
+  //    type: #FIELDGROUP_REFERENCE,
+  //    label: 'Notes',
+  //    parentId: 'Customer',
+  //    targetQualifier: 'Notes',
+  //    position: 30
+  //  },
+  //    {
+  //      id: 'Orders',
+  //      type: #LINEITEM_REFERENCE,
+  //      label: 'Orders',
+  //      position: 20,
+  //      targetElement: '_Order'
+  //    },
+  //  {
+  //    id: 'Revenue',
+  //    purpose: #STANDARD,
+  //    type: #LINEITEM_REFERENCE,
+  //    label: 'Total Revenue',
+  //    position: 30,
+  //    targetElement: '_Revenue'
+  //  }
+  //  ]
+
+  @UI.facet: [
+    {
+      id: 'Customer',
+      type: #COLLECTION,
+      label: 'Customer',
+      position: 10
+    },
+    {
+      id: 'CustomerGeneral',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'General',
+      parentId: 'Customer',
+      targetQualifier: 'CustomerGeneral',
+      position: 10
+    },
+    {
+      id: 'Address',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Address',
+      parentId: 'Customer',
+      targetQualifier: 'Address',
+      position: 20
+    },
+    {
+      id: 'Contact',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Contact',
+      parentId: 'Customer',
+      targetQualifier: 'Contact',
+      position: 30
+    },
+    {
+      id: 'Notes',
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Notes',
+      parentId: 'Customer',
+      targetQualifier: 'Notes',
+      position: 40
+    },
+    {
+      id: 'Orders',
+      type: #LINEITEM_REFERENCE,
+      label: 'Orders',
+      position: 50,
+      targetElement: '_Order'
+    },
+    {
+      id: 'Revenue',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Total Revenue',
+      position: 60,
+      targetElement: '_Revenue'
+    }
+  ]
+  //
+  //  @EndUserText.label: 'Customer ID'
+  //  @UI.lineItem: [{ position: 10 }]
+  //  @UI.identification: [{ position: 10 }]
+  //  CustomerId;
+  //
+  //
+  //  @EndUserText.label: 'First Name'
+  //  @UI.lineItem: [{ position: 20 }]
+  //  @UI.identification: [{ position: 20 }]
+  //  FirstName;
+  //
+  //  @EndUserText.label: 'Last Name'
+  //  @UI.lineItem: [{ position: 30 }]
+  //  @UI.identification: [{ position: 30 }]
+  //  LastName;
+  //
+  //
+  //
+  //  @UI.lineItem: [{ position: 40 }]
+  //  @UI.identification: [{ position: 40 }]
+  //  City;
+  //
+  //  @UI.lineItem: [{ position: 50 }]
+  //  @UI.identification: [{ position: 50 }]
+  //  Status;
+  //
+  //  @EndUserText.label: 'ZIP-Code'
+  //  @UI.lineItem: [{ position: 50 }]
+  //  @UI.identification: [{ position: 50 }]
+  //  ZipCode;
+  //
+  //  @UI.lineItem: [{ position: 60 }]
+  //  @UI.identification: [{ position: 60 }]
+  //  Country;
+  //
+  //  @EndUserText.label: 'Phone Number'
+  //  @UI.fieldGroup: [{ qualifier: 'Contact', position: 10 }]
+  //  TelNumber;
+  //
+  //  @EndUserText.label: 'E-Mail'
+  //  @UI.fieldGroup: [{ qualifier: 'Contact', position: 20 }]
+  //  Email;
+  //
+  //  @UI.lineItem: [{ position: 90 }]
+  //  @UI.identification: [{ position: 90 }]
+  //  Status;
+  //
+  //  @UI.lineItem: [{ position: 100 }]
+  //  @UI.identification: [{ position: 100 }]
+  //  @EndUserText.label: 'Revenue'
+  //  RevenueField;
+  //
+  //  @EndUserText.label: 'Customer Note'
+  //  @UI.multiLineText: true
+  //  @UI.fieldGroup: [{ qualifier: 'Notes', position: 10 }]
+  //  Note;
+
+  @EndUserText.label: 'Customer ID'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  @UI.fieldGroup: [{ position: 10, qualifier: 'CustomerGeneral' }]
+  CustomerId;
+
+  @EndUserText.label: 'First Name'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  @UI.fieldGroup: [{ position: 20, qualifier: 'CustomerGeneral' }]
+  FirstName;
+
+  @EndUserText.label: 'Last Name'
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  @UI.fieldGroup: [{ position: 30, qualifier: 'CustomerGeneral' }]
+  LastName;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  @UI.fieldGroup: [{ position: 40, qualifier: 'CustomerGeneral' }]
+  Status;
+
+  @EndUserText.label: 'Revenue'
+  //  @UI.lineItem: [{ position: 100 }]
+  @UI.identification: [{ position: 50 }]
+  @UI.fieldGroup: [{ position: 50, qualifier: 'CustomerGeneral' }]
+  RevenueField;
+
+  @EndUserText.label: 'Street'
+  @UI.identification: [{ position: 60 }]
+  @UI.fieldGroup: [{ qualifier: 'Address', position: 10 }]
+  Address;
+
+  @EndUserText.label: 'City'
+  @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 70 }]
+  @UI.fieldGroup: [{ qualifier: 'Address', position: 20 }]
+  City;
+
+  @EndUserText.label: 'ZIP-Code'
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 80 }]
+  @UI.fieldGroup: [{ qualifier: 'Address', position: 30 }]
+  ZipCode;
+
+  @UI.identification: [{ position: 90 }]
+  @UI.fieldGroup: [{ qualifier: 'Address', position: 40 }]
+  Country;
+
+  @EndUserText.label: 'Phone Number'
+  @UI.identification: [{ position: 100 }]
+  @UI.fieldGroup: [{ qualifier: 'Contact', position: 10 }]
+  TelNumber;
+
+  @EndUserText.label: 'E-Mail'
+  @UI.identification: [{ position: 110 }]
+  @UI.fieldGroup: [{ qualifier: 'Contact', position: 20 }]
+  Email;
+
+  @EndUserText.label: 'Customer Note'
+  @UI.multiLineText: true
+  @UI.identification: [{ position: 120 }]
+  @UI.fieldGroup: [{ qualifier: 'Notes', position: 10 }]
+  Note;
+
+}

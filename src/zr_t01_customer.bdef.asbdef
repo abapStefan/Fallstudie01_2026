@@ -1,0 +1,125 @@
+managed implementation in class zbp_r_t01_customer unique;
+strict ( 2 );
+
+define behavior for ZR_T01_CUSTOMER alias Customer
+persistent table zt01_db_customer
+lock master
+authorization master ( instance )
+//etag master <field_name>
+//etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+//  delete;
+
+  field ( readonly ) CustomerId;
+  field ( readonly ) CreatedBy;
+  field ( readonly ) CreatedAt;
+  field ( readonly ) LocalLastChangedBy;
+  field ( readonly ) LocalLastChangedAt;
+  field ( readonly ) LastChangedAt;
+
+  association _Order { create; }
+
+  mapping for zt01_db_customer // corresponding
+    {
+      CustomerId         = customer_id;
+      FirstName          = first_name;
+      LastName           = last_name;
+      Address            = address;
+      City               = city;
+      ZipCode            = zip_code;
+      Country            = country;
+      Status             = status;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}
+
+define behavior for ZR_T01_ORDER alias Order
+persistent table zt01_db_order
+lock dependent by _Customer
+authorization dependent by _Customer
+//etag master <field_name>
+{
+
+  update;
+//  delete;
+
+  field ( readonly ) OrderId;
+  field ( readonly ) CustomerId;
+  field ( readonly ) OrderDate;
+  field ( readonly ) TotalAmount;
+  field ( readonly ) CurrencyCode;
+  field ( readonly ) Status;
+  field ( readonly ) CreatedBy;
+  field ( readonly ) CreatedAt;
+  field ( readonly ) LocalLastChangedBy;
+  field ( readonly ) LocalLastChangedAt;
+  field ( readonly ) LastChangedAt;
+
+  association _Customer;
+  association _OrderItem { create; }
+
+  mapping for zt01_db_order corresponding
+    {
+      OrderId            = order_id;
+      CustomerId         = customer_id;
+      OrderDate          = order_date;
+      TotalAmount        = total_amount;
+      CurrencyCode       = currency_code;
+      Status             = status;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}
+
+define behavior for ZR_T01_ORDER_ITEM alias Order_Item
+persistent table zt01_db_order_it
+lock dependent by _Customer
+authorization dependent by _Customer
+//etag master <field_name>
+{
+  update;
+//  delete;
+
+  field ( readonly ) OrderItemId;
+  field ( readonly ) OrderId;
+  field ( readonly ) ProductId;
+  field ( readonly ) Quantity;
+  field ( readonly ) UnitPriceAtOrder;
+  field ( readonly ) ItemTotalPrice;
+  field ( readonly ) CurrencyCode;
+  field ( readonly ) CustomerId;
+  field ( readonly ) CreatedBy;
+  field ( readonly ) CreatedAt;
+  field ( readonly ) LocalLastChangedBy;
+  field ( readonly ) LocalLastChangedAt;
+  field ( readonly ) LastChangedAt;
+
+  association _Order;
+  association _Customer;
+  association _Product;
+
+  mapping for zt01_db_order_it corresponding
+    {
+      OrderItemId        = order_item_id;
+      OrderId            = order_id;
+      ProductId          = product_id;
+      Quantity           = quantity;
+      UnitPriceAtOrder   = unit_price_at_order;
+      CurrencyCode       = currency_code;
+      CustomerId         = customer_id;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}

@@ -1,0 +1,34 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_T01_CUSTOMER alias Customer
+{
+  use create;
+  use update;
+//  use delete;
+
+  use association _Order { create; }
+
+}
+
+define behavior for ZC_T01_ORDER alias Order
+{
+
+  use update;
+//  use delete;
+
+  use association _Customer;
+  use association _OrderItem { create; }
+
+}
+
+define behavior for ZC_T01_ORDER_ITEM alias Order_Item
+{
+  use update;
+//  use delete;
+
+  use association _Customer;
+  use association _Order;
+  use association _Product;
+
+}

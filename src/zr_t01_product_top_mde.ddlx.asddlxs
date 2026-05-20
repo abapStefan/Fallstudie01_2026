@@ -1,0 +1,72 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+  typeName: 'Product Revenue',
+  typeNamePlural: 'Product Revenues'
+}
+@UI.presentationVariant: [{
+  qualifier: 'Default',
+  sortOrder: [{
+    by: 'Revenue',
+    direction: #DESC
+  }]
+}]
+@UI.selectionPresentationVariant: [{
+  qualifier: 'Default',
+  presentationVariantQualifier: 'Default'
+}]
+//annotate entity ZR_T01_PRODUCT_TOP with
+annotate entity ZC_T01_PRODUCT_TOP with
+{
+//  @EndUserText.label: 'Product ID'
+//  @UI.lineItem: [{ position: 10 }]
+//  @UI.identification: [{ position: 10 }]
+//  ProductID;
+
+  @UI.facet: [
+    {
+      id: 'ProductRevenueData',
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Product Revenue',
+      position: 10
+    },
+  {
+    id: 'OrderItems',
+    type: #LINEITEM_REFERENCE,
+    label: 'Order Items',
+    position: 20,
+    targetElement: '_OrderItem'
+  }
+    
+  ]
+
+
+@UI.hidden: true
+SortRevenue;
+
+@UI.lineItem: [
+  {
+    position: 10,
+    type: #STANDARD,
+    value: 'ProductID',
+    label: 'Product',
+    targetElement: '_Product'
+  }
+]
+ProductID;
+
+  @EndUserText.label: 'Product Name'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  ProductName;
+
+  @EndUserText.label: 'Sold Units'
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  TotalQuantiy;
+
+  @EndUserText.label: 'Revenue'
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  Revenue;
+  
+}
